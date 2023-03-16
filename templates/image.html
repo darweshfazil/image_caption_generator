@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Upload Image</title>
+  </head>
+  <body>
+    <h1>Upload image to generate caption</h1>
+ 
+    <form method="POST" enctype="multipart/form-data" action="/uploadImage">
+        <input type="file" id="myFile" name="uploaded-file" accept=".jpg">
+        <input type="submit" value="Submit">
+    </form>
+    <br>
+    <p style="color:blue;">Choose image file to upload</p>
+    <form action="/generateCaption" target="_blank">
+            <input type="submit" value="Generate Caption" />
+    </form>
+  </body>
+</html> 
