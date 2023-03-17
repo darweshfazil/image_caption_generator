@@ -20,7 +20,7 @@ def init_feature_model():
 
 def init_model():
     # load and return the model
-    return pickle.load(open(os.path.join(PATH_TO_BASE_DIRECTORY, 'trained_model_30k_15e_32b'), 'rb'))
+    return pickle.load(open(os.path.join(PATH_TO_BASE_DIRECTORY, 'trained_model_30k_10e_32b'), 'rb'))
 
 def tokenize_text(all_captions):
     # tokenize the text
