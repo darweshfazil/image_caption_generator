@@ -9,6 +9,8 @@ UPLOAD_FOLDER = os.path.join('static', 'uploads')
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+app.secret_key = 'Random12$@'
+
 @app.route('/')
 def index():
     return render_template('image.html')
