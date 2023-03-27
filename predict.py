@@ -22,11 +22,9 @@ def init_model():
     # load and return the model
     return pickle.load(open(os.path.join(PATH_TO_BASE_DIRECTORY, 'trained_model_30k_10e_32b'), 'rb'))
 
-def tokenize_text(all_captions):
-    # tokenize the text
-    tokenizer = Tokenizer()
-    tokenizer.fit_on_texts(all_captions)
-    return tokenizer
+def init_tokenizer():
+    # return the tokenized text
+    return pickle.load(open(os.path.join(PATH_TO_BASE_DIRECTORY, 'tokenizer.pkl'), 'rb'))
 
 def get_vocab_size(tokenizer):
     # return the vocab_size
@@ -90,7 +88,7 @@ def generate_caption(image_name):
     # initialize model
     all_captions = init_all_captions()
     model = init_model()
-    tokenizer = tokenize_text(all_captions)
+    tokenizer = init_tokenizer()
     max_length = get_max_length(all_captions)
 
     # predict and return the caption
