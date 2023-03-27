@@ -7,10 +7,6 @@ app = Flask(__name__)
 
 # Defining upload folder path
 UPLOAD_FOLDER = os.path.join('static', 'uploads')
-# # Define allowed files
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
-
-generatedCaption = ''
 
 # Configure upload folder for Flask application
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -22,11 +18,11 @@ app.secret_key = 'Random12$@'
 def hello():
     return render_template('index.html')
 
-@app.route('/uploadImage')
+@app.route('/home')
 def index():
     return render_template('image.html')
  
-@app.route('/uploadImage',  methods=["POST", "GET"])
+@app.route('/home',  methods=["POST", "GET"])
 def uploadFile():
     if request.method == 'POST':
         # Upload file flask
@@ -41,7 +37,7 @@ def uploadFile():
  
         return render_template('image2.html')
  
-@app.route('/generateCaption')
+@app.route('/getCaption')
 def displayImage():
     # Retrieving uploaded file path from session
     img_file_path = session.get('uploaded_img_file_path', None)
@@ -50,9 +46,18 @@ def displayImage():
     # Display image in Flask application web page
     return render_template('show.html', user_image = img_file_path, caption = generatedCaption)
 
-@app.route('/generateCaption')
-def generateCaption():
-    request.get_data
+@app.route('/getCaption', methods=['POST'])
+def getCaption():
+    uploaded_img = request.files['uploaded-file']
+    # Extracting uploaded data file name
+    img_filename = secure_filename(uploaded_img.filename)
+    IMAGE_PATH = os.path.join(app.config['UPLOAD_FOLDER'], img_filename)
+    # Upload file to database (defined uploaded folder in static path)
+    uploaded_img.save(IMAGE_PATH)
+    generatedCaption = p.generate_caption(uploaded_img.filename)
+    # Display image in Flask application web page
+    return generatedCaption
+
 
 def initialize():
     print("<-----This function will run once----->")

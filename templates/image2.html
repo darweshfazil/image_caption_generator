@@ -6,13 +6,13 @@
   <body>
     <h1>Upload image to generate caption</h1>
  
-    <form method="POST" enctype="multipart/form-data" action="/uploadImage">
-        <input type="file" id="myFile" name="uploaded-file" accept=".png">
+    <form method="POST" enctype="multipart/form-data" action="/home">
+        <input type="file" id="myFile" name="uploaded-file" accept=".jpg">
         <input type="submit" value="Submit">
     </form>
     <br>
     <p style="color:green;">File uploaded successfully</p>
-    <form action="/generateCaption" target="_blank">
+    <form action="/getCaption" target="_blank">
             <input type="submit" value="Generate Caption" />
     </form>
   </body>
