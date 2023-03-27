@@ -34,6 +34,7 @@ def displayImage():
     img_file_path = session.get('uploaded_img_file_path', None)
     image_name = session.get('uploaded_image_name')
     generatedCaption = pred.generate_caption(image_name)
+
     return render_template('show.html', user_image = img_file_path, caption = generatedCaption)
 
 # route to serve requests across platforms
@@ -45,6 +46,7 @@ def getCaption():
     IMAGE_PATH = os.path.join(app.config['UPLOAD_FOLDER'], img_filename)
     uploaded_img.save(IMAGE_PATH)
     generatedCaption = pred.generate_caption(uploaded_img.filename)
+    
     return generatedCaption
 
 if __name__ == '__main__' :
