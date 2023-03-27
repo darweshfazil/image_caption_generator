@@ -10,14 +10,10 @@ UPLOAD_FOLDER = os.path.join('static', 'uploads')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
-def hello():
-    return render_template('index.html')
-
-@app.route('/home')
 def index():
     return render_template('image.html')
  
-@app.route('/home',  methods=["POST", "GET"])
+@app.route('/',  methods=["POST", "GET"])
 def uploadFile():
     if request.method == 'POST':
         uploaded_img = request.files['uploaded-file']
